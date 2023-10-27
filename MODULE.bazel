@@ -1,0 +1,2 @@
+bazel_dep(name = "rules_ios", version = "3.0.1", repo_name = "build_bazel_rules_ios")
+bazel_dep(name = "rules_xcodeproj", version = "1.12.1")

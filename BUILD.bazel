@@ -1,0 +1,29 @@
+# this was using rules_ios's built-in xcodeproj
+
+# load("@build_bazel_rules_ios//rules:xcodeproj.bzl", "xcodeproj")
+
+# xcodeproj(
+#     name = "ROIXcode",
+#     bazel_path = "bazelisk",
+#     generate_schemes_for_product_types = ["application"],
+#     deps = ["//app:bitriseroi"]
+# )
+
+
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj", "top_level_target")
+load(
+    ":xcodeproj_targets.bzl",
+    "SCHEME_AUTOGENERATION_MODE",
+    "get_xcode_schemes",
+)
+
+xcodeproj(
+    name = "ROIXcode",
+    build_mode = "bazel",
+    project_name = "bitriseroi",
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+    schemes = get_xcode_schemes(),
+    top_level_targets =  [
+        top_level_target("//app:bitriseroi", target_environments = ["simulator"])
+    ],
+)

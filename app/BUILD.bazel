@@ -1,0 +1,18 @@
+load("@build_bazel_rules_ios//rules:app.bzl", "ios_application")
+load(
+    "//:xcodeproj_targets.bzl",
+    "IOS_BUNDLE_ID",
+    "TEAMID",
+)
+
+ios_application(
+    name = "bitriseroi",
+    srcs = glob(["*.swift"]),
+    bundle_id = IOS_BUNDLE_ID,
+    families = [
+        "iphone",
+        "ipad",
+    ],
+    minimum_os_version = "16.0",
+    visibility = ["//visibility:public"],
+)
